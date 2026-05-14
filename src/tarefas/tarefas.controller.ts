@@ -1,5 +1,6 @@
 import { BadRequestException, Controller, Get, Param, Query, Post, Body, Patch, Delete } from '@nestjs/common';
 import { TarefasService } from './tarefas.service';
+import { CreateTarefas } from 'src/dtos/create-tarefas/create-tarefas';
 
 @Controller('tarefas')
 export class TarefasController {
