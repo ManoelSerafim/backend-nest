@@ -1,79 +1,43 @@
-import { BadRequestException, Controller, Get, Param, Query, Post, Body, Patch, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Post,
+  Body,
+  Patch,
+  Delete,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { TarefasService } from './tarefas.service';
 import { CreateTarefas } from 'src/dtos/create-tarefas/create-tarefas';
+import { UpdateTarefas } from 'src/dtos/update-tarefas/update-tarefas';
 
 @Controller('tarefas')
 export class TarefasController {
-    constructor(private readonly tarefasService: TarefasService) { }
+  constructor(private readonly tarefasService: TarefasService) {}
 
-    @Get()
-    listar(
-        @Query('status') status?: string,
-        @Query('prioridade') prioridade?: string,
-    ) {
-        return this.tarefasService.listar(status, prioridade);
-    }
+  @Get(':id')
+  buscarPorId(@Param('id', ParseIntPipe) id: number) {
+    return this.tarefasService.buscarPorId(id);
+  }
 
-    @Get(':id')
-    buscarPorId(@Param('id') id: string) {
-        const idNumero = Number(id);
+  @Post()
+  criar(@Body() body: CreateTarefas) {
+    return this.tarefasService.criar(body);
+  }
 
-        if (Number.isNaN(idNumero)) {
-            throw new BadRequestException('Parametro "id" deve ser numerico');
-        }
+  @Patch(':id')
+  atualizarParcial(
+    @Param('id', ParseIntPipe) id: number,
+    @Body()
+    body: UpdateTarefas,
+  ) {
+    return this.tarefasService.atualizarParcial(id, body);
+  }
 
-        return this.tarefasService.buscarPorId(idNumero);
-    }
-
-    @Post()
-    criar(
-        @Body()
-        body: {
-            titulo: string;
-            descricao: string;
-            status: 'aberta' | 'em_andamento' | 'concluida';
-            prioridade: 'baixa' | 'media' | 'alta';
-        },
-    ) {
-        if (!body.titulo || !body.descricao || !body.status || !body.prioridade) {
-            throw new BadRequestException('Campos obrigatorios: titulo, descricao, status e prioridade');
-        }
-
-        return this.tarefasService.criar(body);
-    }
-
-    @Patch(':id')
-    atualizarParcial(
-        @Param('id') id: string,
-        @Body()
-        body: {
-            titulo?: string;
-            descricao?: string;
-            status?: 'aberta' | 'em_andamento' | 'concluida';
-            prioridade?: 'baixa' | 'media' | 'alta';
-        },
-    ) {
-        const idNumero = Number(id);
-
-        if (Number.isNaN(idNumero)) {
-            throw new BadRequestException('Parametro "id" deve ser numerico');
-        }
-
-        if (Object.keys(body).length === 0) {
-            throw new BadRequestException('Envie ao menos um campo para atualizacao');
-        }
-
-        return this.tarefasService.atualizarParcial(idNumero, body);
-    }
-
-    @Delete(':id')
-    remover(@Param('id') id: string) {
-        const idNumero = Number(id);
-
-        if (Number.isNaN(idNumero)) {
-            throw new BadRequestException('Parametro "id" deve ser numerico');
-        }
-
-        return this.tarefasService.remover(idNumero);
-    }
+  @Delete(':id')
+  remover(@Param('id', ParseIntPipe) id: number) {
+    const idNumero = Number(id);
+    return this.tarefasService.remover(idNumero);
+  }
 }
