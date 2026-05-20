@@ -9,8 +9,8 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { TarefasService } from './tarefas.service';
-import { CreateTarefas } from 'src/dtos/create-tarefas/create-tarefas';
-import { UpdateTarefas } from 'src/dtos/update-tarefas/update-tarefas';
+import { CreateTarefasDto } from 'src/tarefas/dtos/CreateTarefasDto';
+import { UpdateTarefasDto } from 'src/tarefas/dtos/UpdateTarefasDto';
 
 @Controller('tarefas')
 export class TarefasController {
@@ -22,7 +22,7 @@ export class TarefasController {
   }
 
   @Post()
-  criar(@Body() body: CreateTarefas) {
+  criar(@Body() body: CreateTarefasDto) {
     return this.tarefasService.criar(body);
   }
 
@@ -30,14 +30,9 @@ export class TarefasController {
   atualizarParcial(
     @Param('id', ParseIntPipe) id: number,
     @Body()
-    body: UpdateTarefas,
+    body: UpdateTarefasDto,
   ) {
     return this.tarefasService.atualizarParcial(id, body);
   }
 
-  @Delete(':id')
-  remover(@Param('id', ParseIntPipe) id: number) {
-    const idNumero = Number(id);
-    return this.tarefasService.remover(idNumero);
-  }
 }

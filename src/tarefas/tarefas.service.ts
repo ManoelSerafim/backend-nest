@@ -1,10 +1,15 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateTarefasDto } from 'src/tarefas/dtos/CreateTarefasDto';
+import {
+  UpdateTarefasDto,
+  StatusTarefa,
+} from 'src/tarefas/dtos/UpdateTarefasDto';
 
 type Tarefa = {
   id: number;
   titulo: string;
-  descricao: string;
-  status: 'aberta' | 'em_andamento' | 'concluida';
+  descricao?: string;
+  status: StatusTarefa;
   prioridade: number;
 };
 
@@ -15,43 +20,43 @@ export class TarefasService {
       id: 1,
       titulo: 'Configurar projeto',
       descricao: 'Instalar dependencias e validar o NestJS',
-      status: 'concluida',
+      status: StatusTarefa.CONCLUIDA,
       prioridade: 1,
     },
     {
       id: 2,
       titulo: 'Criar modulo tarefas',
       descricao: 'Gerar module, controller e service',
-      status: 'em_andamento',
+      status: StatusTarefa.EM_ANDAMENTO,
       prioridade: 2,
     },
     {
       id: 3,
       titulo: 'Implementar listagem',
       descricao: 'Criar rota GET /tarefas',
-      status: 'aberta',
+      status: StatusTarefa.ABERTA,
       prioridade: 2,
     },
     {
       id: 4,
       titulo: 'Testar no Thunder Client',
       descricao: 'Salvar requests da pratica',
-      status: 'aberta',
+      status: StatusTarefa.ABERTA,
       prioridade: 3,
     },
   ];
 
-  buscarPorId(id: number) {
+  buscarPorId(id: number) : Tarefa {
     const tarefa = this.tarefas.find((item) => item.id === id);
 
     if (!tarefa) {
-      throw new NotFoundException('Tarefa nao encontrada');
+      throw new NotFoundException('Tarefa não encontrada');
     }
 
     return tarefa;
   }
 
-  criar(dados: Omit<Tarefa, 'id'>) {
+  criar(dados: CreateTarefasDto) : Tarefa {
     const novoId =
       this.tarefas.length > 0
         ? Math.max(...this.tarefas.map((item) => item.id)) + 1
@@ -63,7 +68,7 @@ export class TarefasService {
     return novaTarefa;
   }
 
-  atualizarParcial(id: number, dados: Partial<Omit<Tarefa, 'id'>>) {
+  atualizarParcial(id: number, dados: UpdateTarefasDto) : Tarefa {
     const tarefa = this.buscarPorId(id);
     const tarefaAtualizada = { ...tarefa, ...dados };
 
@@ -74,13 +79,4 @@ export class TarefasService {
     return tarefaAtualizada;
   }
 
-  remover(id: number) {
-    const tarefa = this.buscarPorId(id);
-
-    this.tarefas = this.tarefas.filter((item) => item.id !== id);
-
-    return {
-      mensagem: `Tarefa ${tarefa.id} removida com sucesso`,
-    };
-  }
 }
