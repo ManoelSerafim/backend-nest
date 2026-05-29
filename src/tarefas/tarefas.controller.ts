@@ -5,7 +5,6 @@ import {
   Post,
   Body,
   Patch,
-  Delete,
   ParseIntPipe,
 } from '@nestjs/common';
 import { TarefasService } from './tarefas.service';
@@ -34,5 +33,4 @@ export class TarefasController {
   ) {
     return this.tarefasService.atualizarParcial(id, body);
   }
-
 }

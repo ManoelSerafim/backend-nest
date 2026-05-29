@@ -46,7 +46,7 @@ export class TarefasService {
     },
   ];
 
-  buscarPorId(id: number) : Tarefa {
+  buscarPorId(id: number): Tarefa {
     const tarefa = this.tarefas.find((item) => item.id === id);
 
     if (!tarefa) {
@@ -56,7 +56,7 @@ export class TarefasService {
     return tarefa;
   }
 
-  criar(dados: CreateTarefasDto) : Tarefa {
+  criar(dados: CreateTarefasDto): Tarefa {
     const novoId =
       this.tarefas.length > 0
         ? Math.max(...this.tarefas.map((item) => item.id)) + 1
@@ -68,7 +68,7 @@ export class TarefasService {
     return novaTarefa;
   }
 
-  atualizarParcial(id: number, dados: UpdateTarefasDto) : Tarefa {
+  atualizarParcial(id: number, dados: UpdateTarefasDto): Tarefa {
     const tarefa = this.buscarPorId(id);
     const tarefaAtualizada = { ...tarefa, ...dados };
 
@@ -78,5 +78,4 @@ export class TarefasService {
 
     return tarefaAtualizada;
   }
-
 }
