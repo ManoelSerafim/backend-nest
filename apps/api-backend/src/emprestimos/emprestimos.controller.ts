@@ -10,8 +10,8 @@ import {
   DefaultValuePipe,
 } from '@nestjs/common';
 import { EmprestimosService } from './emprestimos.service';
-import { CreateEmprestimoDto } from './dtos/CreateEmprestimoDto';
-import { UpdateEmprestimoDto } from './dtos/UpdateEmprestimoDto';
+import { CreateEmprestimoDto } from './dto/CreateEmprestimoDto';
+import { UpdateEmprestimoDto } from './dto/UpdateEmprestimoDto';
 
 @Controller('emprestimos')
 export class EmprestimosController {

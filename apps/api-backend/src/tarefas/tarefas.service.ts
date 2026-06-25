@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateTarefasDto } from 'src/tarefas/dtos/CreateTarefasDto';
+import { CreateTarefasDto } from 'src/tarefas/dto/CreateTarefasDto';
 import {
   UpdateTarefasDto,
   StatusTarefa,
-} from 'src/tarefas/dtos/UpdateTarefasDto';
+} from 'src/tarefas/dto/UpdateTarefasDto';
 
 type Tarefa = {
   id: number;

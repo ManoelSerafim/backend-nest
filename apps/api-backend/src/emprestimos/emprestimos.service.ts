@@ -1,6 +1,10 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { CreateEmprestimoDto } from './dtos/CreateEmprestimoDto';
-import { UpdateEmprestimoDto } from './dtos/UpdateEmprestimoDto';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { CreateEmprestimoDto } from './dto/CreateEmprestimoDto';
+import { UpdateEmprestimoDto } from './dto/UpdateEmprestimoDto';
 
 type Emprestimo = {
   id: number;
@@ -36,7 +40,7 @@ export class EmprestimosService {
       dataDevolucao: '2023-01-10',
       status: 'ativo',
     },
-        {
+    {
       id: 2,
       patrimonio: 'Computador',
       solicitante: 'Jorge',
@@ -68,8 +72,8 @@ export class EmprestimosService {
   buscarPorId(id: number): Emprestimo {
     const emprestimo = this.emprestimos.find((item) => item.id === id);
     if (!emprestimo) {
-          throw new NotFoundException('Tarefa não encontrada');
-        }
+      throw new NotFoundException('Tarefa não encontrada');
+    }
     return emprestimo;
   }
 
@@ -91,7 +95,7 @@ export class EmprestimosService {
     if ((emprestimo.status = 'devolvido')) {
       throw new BadRequestException('Produto ja devolvido.');
     }
-    if ((emprestimo.status != 'devolvido')) {
+    if (emprestimo.status != 'devolvido') {
       emprestimo.status == 'devolvido';
     }
 

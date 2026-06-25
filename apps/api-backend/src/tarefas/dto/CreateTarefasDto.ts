@@ -7,7 +7,7 @@ import {
   IsNumber,
   IsEnum,
 } from 'class-validator';
-import { StatusTarefa } from 'src/tarefas/dtos/UpdateTarefasDto';
+import { StatusTarefa } from 'src/tarefas/dto/UpdateTarefasDto';
 
 export class CreateTarefasDto {
   @IsString()

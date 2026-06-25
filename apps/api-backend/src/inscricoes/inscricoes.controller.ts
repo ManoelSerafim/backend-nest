@@ -9,7 +9,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { CreateInscricaoDto } from './dtos/create-inscricao.dto';
+import { CreateInscricaoDto } from './dto/create-inscricao.dto';
 import { InscricoesService } from './inscricoes.service';
 
 const TAMANHO_MAXIMO_COMPROVANTE = 2 * 1024 * 1024;

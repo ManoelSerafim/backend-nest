@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateInscricaoDto } from './dtos/create-inscricao.dto';
+import { CreateInscricaoDto } from './dto/create-inscricao.dto';
 import * as Multer from 'multer';
 
 type ArquivoRecebido = {
@@ -29,10 +29,7 @@ export class InscricoesService {
     return novaInscricao;
   }
 
-  criarComArquivo(
-    dados: CreateInscricaoDto,
-    comprovante: Express.Multer.File,
-  ) {
+  criarComArquivo(dados: CreateInscricaoDto, comprovante: Express.Multer.File) {
     const novaInscricao: Inscricao = {
       id: this.inscricoes.length + 1,
       ...dados,

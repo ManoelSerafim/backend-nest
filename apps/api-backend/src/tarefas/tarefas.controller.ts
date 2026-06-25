@@ -8,8 +8,8 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { TarefasService } from './tarefas.service';
-import { CreateTarefasDto } from 'src/tarefas/dtos/CreateTarefasDto';
-import { UpdateTarefasDto } from 'src/tarefas/dtos/UpdateTarefasDto';
+import { CreateTarefasDto } from 'src/tarefas/dto/CreateTarefasDto';
+import { UpdateTarefasDto } from 'src/tarefas/dto/UpdateTarefasDto';
 
 @Controller('tarefas')
 export class TarefasController {
