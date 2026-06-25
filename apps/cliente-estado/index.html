@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estado no backend</title>
+  </head>
+  <body>
+    <main>
+      <h1>Estado no backend</h1>
+
+      <section>
+        <h2>Preferências</h2>
+
+        <form id="form-preferencias">
+          <label for="tema">Tema</label>
+          <select id="tema" name="tema">
+            <option value="sistema">Sistema</option>
+            <option value="claro">Claro</option>
+            <option value="escuro">Escuro</option>
+          </select>
+
+          <button type="submit">Salvar preferência</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Identificação da sessão</h2>
+
+        <form id="form-identificacao">
+          <div>
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" type="text" required>
+          </div>
+
+          <div>
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email">
+          </div>
+
+          <button type="submit">Identificar sessão</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Ações</h2>
+
+        <button id="btn-ver-sessao" type="button">Ver sessão</button>
+        <button id="btn-ler-preferencias" type="button">Ler preferências</button>
+        <button id="btn-sair" type="button">Sair</button>
+      </section>
+
+      <pre id="resultado" aria-live="polite"></pre>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateInscricaoDto } from './dto/create-inscricao.dto';
-import * as Multer from 'multer';
 
 type ArquivoRecebido = {
   nomeOriginal: string;

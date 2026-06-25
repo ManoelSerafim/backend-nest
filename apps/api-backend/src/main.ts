@@ -1,7 +1,7 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import * as cookieParser from 'cookie-parser';
-import * as session from 'express-session';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
