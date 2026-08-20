@@ -6,9 +6,11 @@ import { EmprestimosController } from './emprestimos/emprestimos.controller';
 import { EmprestimosModule } from './emprestimos/emprestimos.module';
 import { InscricoesModule } from './inscricoes/inscricoes.module';
 import { EstadoModule } from './estado/estado.module';
+import { AuthModule } from './auth/auth.module';
+import { UsuariosModule } from './usuarios/usuarios.module';
 
 @Module({
-  imports: [TarefasModule, EmprestimosModule, InscricoesModule, EstadoModule],
+  imports: [TarefasModule, EmprestimosModule, InscricoesModule, EstadoModule, AuthModule, UsuariosModule],
   controllers: [AppController],
   providers: [AppService],
 })
